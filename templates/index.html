@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ocr_transcriber_and_kontoauszuege</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>ocr_transcriber_and_kontoauszuege</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">File:</label>
+                <input type="file" name="file" class="form-control">
+            </div>
+            <input type="submit" value="Upload" class="btn btn-primary">
+        </form>
+        {% if message %}
+        <p class="alert alert-success">{{ message }}</p>
+        {% endif %}
+        <br>
+        <form action="/execute_operation" method="POST">
+            <div class="form-group">
+                <button type="submit">execute operation</button>
+            </div>
+        </form>
+        <br>
+        <form action="/getfiles" method="POST">
+            <div class="form-group">
+                <button type="submit">get transcription-files</button>
+            </div>
+        </form>
+
+        {% if files %}
+        {% for f in files %}
+        <p><a href="{{ f }}">{{ f }}</a></p>
+        {% endfor %}
+        {% endif %}
+    </div>
+</body>
+
+</html>
